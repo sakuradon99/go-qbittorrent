@@ -39,6 +39,38 @@ type Torrent struct {
 	SuperSeeding bool `json:"super_seeding"`
 	// True if force start is enabled for this torrent
 	ForceStart bool `json:"force_start"`
+
+	// New added fields
+	AddedOn           int    `json:"added_on"`
+	AmountLeft        int    `json:"amount_left"`
+	AutoTmm           bool   `json:"auto_tmm"`
+	Availability      int    `json:"availability"`
+	Completed         int64  `json:"completed"`
+	CompletionOn      int    `json:"completion_on"`
+	ContentPath       string `json:"content_path"`
+	DlLimit           int    `json:"dl_limit"`
+	DownloadPath      string `json:"download_path"`
+	Downloaded        int64  `json:"downloaded"`
+	DownloadedSession int    `json:"downloaded_session"`
+	InfohashV1        string `json:"infohash_v1"`
+	InfohashV2        string `json:"infohash_v2"`
+	LastActivity      int    `json:"last_activity"`
+	MagnetUri         string `json:"magnet_uri"`
+	MaxRatio          int    `json:"max_ratio"`
+	MaxSeedingTime    int    `json:"max_seeding_time"`
+	RatioLimit        int    `json:"ratio_limit"`
+	SavePath          string `json:"save_path"`
+	SeedingTime       int    `json:"seeding_time"`
+	SeedingTimeLimit  int    `json:"seeding_time_limit"`
+	SeenComplete      int    `json:"seen_complete"`
+	Tags              string `json:"tags"`
+	TimeActive        int    `json:"time_active"`
+	TotalSize         int64  `json:"total_size"`
+	Tracker           string `json:"tracker"`
+	TrackersCount     int    `json:"trackers_count"`
+	UpLimit           int    `json:"up_limit"`
+	Uploaded          int64  `json:"uploaded"`
+	UploadedSession   int64  `json:"uploaded_session"`
 }
 
 type TorrentState string
