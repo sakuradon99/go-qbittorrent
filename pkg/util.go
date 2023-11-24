@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/KnutZuidema/go-qbittorrent/pkg/errs"
 	"io"
 	"io/ioutil"
 	"mime/multipart"
@@ -35,6 +36,9 @@ func GetInto(client *http.Client, target interface{}, url string, body interface
 		}
 	}()
 	if resp.StatusCode != http.StatusOK {
+		if resp.StatusCode == http.StatusForbidden {
+			return errs.ErrUnauthorized
+		}
 		return fmt.Errorf("invalid response status %s", resp.Status)
 	}
 	buf, err := ioutil.ReadAll(resp.Body)
@@ -68,6 +72,9 @@ func Post(client *http.Client, url string, body interface{}) (err error) {
 		}
 	}()
 	if resp.StatusCode != http.StatusOK {
+		if resp.StatusCode == http.StatusForbidden {
+			return errs.ErrUnauthorized
+		}
 		return fmt.Errorf("invalid status %s", resp.Status)
 	}
 	return nil
@@ -121,6 +128,9 @@ func PostMultipartLinks(client *http.Client, url string, options *model.AddTorre
 		}
 	}()
 	if resp.StatusCode != http.StatusOK {
+		if resp.StatusCode == http.StatusForbidden {
+			return errs.ErrUnauthorized
+		}
 		return fmt.Errorf("invalid status %s", resp.Status)
 	}
 	return nil
@@ -173,6 +183,9 @@ func PostMultipartFiles(client *http.Client, url string, options *model.AddTorre
 		}
 	}()
 	if resp.StatusCode != http.StatusOK {
+		if resp.StatusCode == http.StatusForbidden {
+			return errs.ErrUnauthorized
+		}
 		return fmt.Errorf("invalid status %s", resp.Status)
 	}
 	return nil
@@ -194,6 +207,9 @@ func PostWithContentType(client *http.Client, url string, body io.Reader, conten
 		}
 	}()
 	if resp.StatusCode != http.StatusOK {
+		if resp.StatusCode == http.StatusForbidden {
+			return errs.ErrUnauthorized
+		}
 		return fmt.Errorf("invalid status %s", resp.Status)
 	}
 	return nil
@@ -215,6 +231,9 @@ func GetIntoWithContentType(client *http.Client, target interface{}, url string,
 		}
 	}()
 	if resp.StatusCode != http.StatusOK {
+		if resp.StatusCode == http.StatusForbidden {
+			return errs.ErrUnauthorized
+		}
 		return fmt.Errorf("invalid response status %s", resp.Status)
 	}
 	buf, err := ioutil.ReadAll(resp.Body)
