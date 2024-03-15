@@ -116,7 +116,7 @@ func (c *Client) Login(username, password string) error {
 	return nil
 }
 
-func (c Client) Logout() error {
+func (c *Client) Logout() error {
 	endpoint := c.baseURL + "/auth/logout"
 	request, err := http.NewRequest("POST", endpoint, nil)
 	if err != nil {
