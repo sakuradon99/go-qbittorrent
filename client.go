@@ -97,7 +97,7 @@ func (c *Client) Login(username, password string) error {
 			c.logger.Error(err)
 		}
 	}()
-	if resp.StatusCode != 200 {
+	if resp.StatusCode != http.StatusOK {
 		return fmt.Errorf("invalid status %s", resp.Status)
 	}
 	if len(resp.Cookies()) < 1 {
@@ -116,7 +116,7 @@ func (c *Client) Login(username, password string) error {
 	return nil
 }
 
-func (c Client) Logout() error {
+func (c *Client) Logout() error {
 	endpoint := c.baseURL + "/auth/logout"
 	request, err := http.NewRequest("POST", endpoint, nil)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c Client) Logout() error {
 	if err != nil {
 		return err
 	}
-	if resp.StatusCode != 200 {
+	if resp.StatusCode != http.StatusOK {
 		return fmt.Errorf("invalid status %s", resp.Status)
 	}
 	return nil
